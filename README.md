@@ -1,6 +1,6 @@
 # ggcemailer
 
-`ggcemailer` is a utility that automates researching topics related to gun control. It categorizes the updates and sends them to the website `governmentguncontrol.com`.
+`Update Government Gun Control` is a utility that automates researching topics related to gun control. It categorizes the updates and sends summaries and supporting links to the website `governmentguncontrol.com`.
 
 Specifically this generates topic-based email drafts with OpenAI and sends them through Gmail to a wordpress web site using settings stored in this repository.
 
@@ -19,8 +19,6 @@ Specifically this generates topic-based email drafts with OpenAI and sends them 
 python -m pip install requests yagmail duckduckgo-search
 ```
 
-`duckduckgo-search` is recommended for source curation. The generator has an HTML fallback if it is not installed.
-
 ## Configuration
 
 Edit `app_settings.py` to control generation and sending behavior.
@@ -30,16 +28,44 @@ Create a `personal.py` file in the repository root for secrets and personal valu
 Example:
 
 ```python
-OPENAI_API_KEY = "your-openai-api-key"
+"""
+Configuration for email sending and topic selection.
+
+Prompt guidance:
+  "Please research gun control in 2026, categorize the information by the
+  headings on https://www.governmentguncontrol.com/, and generate a text file
+  for each category. Each file should contain multiple email entries separated
+  by ---EMAIL_SEPARATOR---, with actual HTTP links to the sources."
+"""
+
+# Your Gmail credentials
+SENDER_EMAIL = "your-email@gmail.com"
+# generate a password to have an app send gmail
+SENDER_PASSWORD = "your-generated-16-char-code"
+
+# Recipient email address
+# To generate a secret email address for publishing posts to WordPress, you must enable the Post by Email feature within your site's settings # or through the Jetpack plugin. This feature creates a unique, private address that converts any sent email into a live blog post, with the # email subject becoming the post title.
+RECIPIENT_EMAIL = "your-generated@post.wordpress.com"
+
+# OpenAI API key (consider moving to an environment variable for safety)
+OPENAI_API_KEY = "your-key-here"
+
+# Reference site whose headings/categories guide research
+REFERENCE_SITE = "https://www.governmentguncontrol.com/"
+
+# Topics to research (list of names, not URLs)
 WEBSITE_TOPICS = [
-    "Background checks",
-    "Safe storage",
-    "Domestic violence restrictions",
+    "Amendments",
+    "Politics",
+    "Law",
+    "Legislation",
+    "Opinion",
+    "Activism",
+    "Ethics",
+    "Religion",
+    "Culture",
 ]
 
-SENDER_EMAIL = "your_email@gmail.com"
-SENDER_PASSWORD = "your-gmail-app-password"
-RECIPIENT_EMAIL = "recipient@example.com"
 ```
 
 Notes:

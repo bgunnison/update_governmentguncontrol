@@ -13,7 +13,6 @@ __pycache__/
 *.suo
 *.user
 logs/
-emails/*.txt
-emails/*.jsonl
+emails/
 codex_log.txt
 Thumbs.db

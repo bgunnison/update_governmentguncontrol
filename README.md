@@ -1,4 +1,4 @@
-# ggcemailer
+# Update Government Gun Control
 
 `Update Government Gun Control` is a utility that automates researching topics related to gun control. It categorizes the updates and sends summaries and supporting links to the website `governmentguncontrol.com`.
 
